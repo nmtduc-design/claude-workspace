@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Sunhouse Intro 15s</title>
+<style>
+  @font-face { font-family: "BVP"; font-weight: 400; src: url("../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-vietnamese-400-normal.woff2") format("woff2"); unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB; }
+  @font-face { font-family: "BVP"; font-weight: 400; src: url("../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "BVP"; font-weight: 600; src: url("../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-vietnamese-600-normal.woff2") format("woff2"); unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB; }
+  @font-face { font-family: "BVP"; font-weight: 600; src: url("../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "BVP"; font-weight: 800; src: url("../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-vietnamese-800-normal.woff2") format("woff2"); unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB; }
+  @font-face { font-family: "BVP"; font-weight: 800; src: url("../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-latin-800-normal.woff2") format("woff2"); }
+
+  :root {
+    --sun: #F36F21;      /* Sun Orange (tạm, thay bằng mã màu brand guideline) */
+    --gold: #FFB547;     /* Warm Gold */
+    --ink: #1C1B1F;      /* Ink */
+    --cream: #FFF6EC;    /* Cream */
+    --stone: #6B6872;    /* Stone */
+    --flag: #FF00C8;     /* QA-only: dữ kiện chưa xác minh */
+  }
+  html, body { margin: 0; padding: 0; background: var(--cream); }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--cream);
+           font-family: "BVP", sans-serif; color: var(--ink); }
+  .layer { position: absolute; inset: 0; }
+  .abs { position: absolute; }
+  .sun { position: absolute; left: 0; top: 0; width: 100px; height: 100px; border-radius: 50%;
+         background: radial-gradient(circle at 38% 35%, var(--gold) 0%, var(--sun) 62%); will-change: transform; }
+  .horizon { position: absolute; left: 0; right: 0; height: 2px; background: var(--ink); opacity: .12; }
+  .h-xl { font-weight: 800; font-size: 168px; letter-spacing: .06em; line-height: 1; }
+  .h-l  { font-weight: 800; font-size: 72px; line-height: 1.1; }
+  .h-m  { font-weight: 600; font-size: 44px; line-height: 1.2; }
+  .body { font-weight: 400; font-size: 36px; line-height: 1.3; color: var(--stone); }
+  .num  { font-weight: 800; font-size: 120px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--sun); }
+  .center { left: 192px; right: 192px; text-align: center; }
+  .fit { white-space: nowrap; overflow: hidden; }
+  .clip { overflow: hidden; }
+  .missing { color: var(--flag) !important; outline: 4px dashed var(--flag); outline-offset: -4px; font-size: 40px !important; display: inline-block; max-width: 100%;
+              font-weight: 600 !important; letter-spacing: 0 !important; line-height: 1.6 !important; padding: 0 16px; box-sizing: border-box; }
+  .card { position: absolute; width: 330px; height: 360px; border-radius: 28px; background: #fff;
+          box-shadow: 0 18px 40px rgba(28,27,31,.08); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+  .card svg { width: 150px; height: 150px; stroke: var(--sun); stroke-width: 6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .card .label { font-weight: 600; font-size: 36px; max-width: 290px; text-align: center; }
+  .stat { position: absolute; width: 480px; text-align: center; }
+  .stat .bar { height: 8px; background: rgba(28,27,31,.08); border-radius: 4px; margin: 28px 60px 0; }
+  .stat .bar i { display: block; height: 100%; background: var(--sun); border-radius: 4px; width: 0; }
+  .stat .cap { margin-top: 22px; }
+  .underline { position: absolute; height: 10px; background: var(--sun); border-radius: 5px; transform-origin: left center; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- Persistent motif: the sun -->
+  <div class="horizon" id="horizon"></div>
+  <div class="sun" id="sun"></div>
+  <div class="abs" id="ground" style="left:0;right:0;bottom:0;background:var(--cream)"></div>
+
+  <!-- S2: wordmark -->
+  <div class="layer" id="s2">
+    <div class="abs center clip" style="top:404px;height:180px"><div class="h-xl fit" id="wordmark" data-text></div></div>
+    <div class="abs center" style="top:622px"><div class="h-m fit" id="descriptor" data-text></div></div>
+    <div class="abs center" style="top:700px"><div class="body fit" id="founded" data-text></div></div>
+  </div>
+
+  <!-- S3: categories -->
+  <div class="layer" id="s3">
+    <div class="abs" style="left:216px;top:150px;right:216px"><div class="h-l fit" id="s3title" data-text>Hệ sinh thái sản phẩm</div></div>
+    <div id="cards"></div>
+  </div>
+
+  <!-- S4: stats -->
+  <div class="layer" id="s4">
+    <div class="abs" style="left:192px;top:220px;right:192px;text-align:center"><div class="h-l fit" id="s4title" data-text>Quy mô hoạt động</div></div>
+    <div id="stats"></div>
+  </div>
+
+  <!-- S5: slogan -->
+  <div class="layer" id="s5">
+    <div class="abs center" style="top:470px"><div class="h-l fit" id="slogan" data-text></div></div>
+    <div class="underline" id="sloganLine" style="top:580px"></div>
+  </div>
+
+  <!-- S6: end card -->
+  <div class="layer" id="s6">
+    <div class="abs center" style="top:420px;height:180px"><div class="h-xl fit" id="endmark" data-text></div></div>
+    <div class="abs center" style="top:900px"><div class="h-m fit" id="website" data-text></div></div>
+  </div>
+
+  <!-- Transition overlay -->
+  <div class="layer" id="dissolve" style="background:var(--cream);opacity:0"></div>
+</div>
+
+<script>
+/* ===== Timeline (frames @30fps, total 450: 0..449) — mirror of PLAN.md §1 ===== */
+const FPS = 30, TOTAL = 450;
+const SHOTS = {
+  S1: [0, 59],    S2: [60, 134],  S3: [135, 209],
+  S4: [210, 329], S5: [330, 404], S6: [405, 449],
+};
+/* Planned hard edits (for QA scene-cut check) */
+window.PLANNED_CUTS = [60, 135, 210, 405];
+
+const W = 1920, H = 1080;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const prog = (f, a, b) => clamp((f - a) / (b - a));
+const easeOut = k => 1 - Math.pow(1 - k, 3);
+const easeInOut = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const backOut = k => { const c = 1.4; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+const $ = id => document.getElementById(id);
+
+const ICONS = {
+  "rice-cooker": '<path d="M30 70h90v40a20 20 0 0 1-20 20H50a20 20 0 0 1-20-20z"/><path d="M26 70c4-26 26-36 49-36s45 10 49 36"/><path d="M75 34v-8"/>',
+  "pan": '<ellipse cx="62" cy="80" rx="44" ry="18"/><path d="M18 80v8c0 10 20 18 44 18s44-8 44-18v-8"/><path d="M106 82l34-8"/>',
+  "fan": '<circle cx="75" cy="62" r="40"/><circle cx="75" cy="62" r="6"/><path d="M75 56c-6-16 0-28 12-30M81 64c16 2 24 12 20 24M69 66c-10 12-24 12-30 2"/><path d="M75 102v28M50 132h50"/>',
+  "water": '<path d="M75 22c22 30 36 48 36 68a36 36 0 0 1-72 0c0-20 14-38 36-68z"/><path d="M58 92a18 18 0 0 0 16 18"/>',
+  "generic": '<rect x="30" y="30" width="90" height="90" rx="18"/><path d="M75 58v34M58 75h34"/>',
+};
+
+let FACTS = {};
+window.__missing = new Set();
+
+/* Bind a fact to an element. Unverified facts render as a magenta QA chip — never invented text. */
+function fact(id, el, fmt = v => String(v), short = false) {
+  const f = FACTS[id];
+  if (f && f.status === "verified" && f.value !== null && f.value !== "") {
+    el.textContent = fmt(f.value); el.classList.remove("missing"); el.dataset.fact = id;
+    return f;
+  }
+  el.textContent = short ? `⟦${id.split("_")[0]}⟧` : `⟦${id.split("_")[0]} · ${f ? f.label : id}⟧`;
+  el.classList.add("missing"); el.dataset.fact = id; window.__missing.add(id);
+  return null;
+}
+
+window.__init = function (facts) {
+  FACTS = facts.facts || {};
+  window.__missing = new Set();
+  fact("F01_brand", $("wordmark"));
+  fact("F01_brand", $("endmark"));
+  fact("F03_descriptor", $("descriptor"));
+  fact("F02_founded", $("founded"), v => `Thành lập năm ${v}`);
+  fact("F11_slogan", $("slogan"));
+  fact("F12_website", $("website"));
+
+  const cards = $("cards"); cards.innerHTML = "";
+  ["F04_category_1", "F05_category_2", "F06_category_3", "F07_category_4"].forEach((id, i) => {
+    const c = document.createElement("div"); c.className = "card"; c.id = "card" + i;
+    c.style.left = (192 + i * (330 + 69)) + "px"; c.style.top = "400px";
+    const f = FACTS[id];
+    const icon = (f && f.status === "verified" && ICONS[f.icon]) ? f.icon : "generic";
+    c.innerHTML = `<svg viewBox="0 0 150 150">${ICONS[icon]}</svg><div class="label fit" data-text></div>`;
+    fact(id, c.querySelector(".label"), String, true);
+    cards.appendChild(c);
+  });
+
+  const stats = $("stats"); stats.innerHTML = "";
+  ["F08_stat_1", "F09_stat_2", "F10_stat_3"].forEach((id, i) => {
+    const s = document.createElement("div"); s.className = "stat"; s.id = "stat" + i;
+    s.style.left = (192 + i * (480 + 48)) + "px"; s.style.top = "420px";
+    s.innerHTML = `<div class="num fit" data-text></div><div class="bar"><i></i></div><div class="body cap fit" data-text></div>`;
+    const f = FACTS[id];
+    const num = s.querySelector(".num"), cap = s.querySelector(".cap");
+    if (f && f.status === "verified" && typeof f.value === "number") {
+      num.dataset.target = f.value; cap.textContent = f.unit || ""; num.dataset.fact = id;
+    } else {
+      const wrap = document.createElement("span"); num.appendChild(wrap); fact(id, wrap, String, true);
+      const cw = document.createElement("span"); cap.appendChild(cw); fact(id, cw, String, true); cw.textContent = `⟦${id.slice(0, 3)} · đơn vị⟧`;
+    }
+    stats.appendChild(s);
+  });
+};
+
+/* Pure function of frame number: same frame in → same pixels out. */
+window.__seek = function (f) {
+  const show = (id, on, op = 1) => { const e = $(id); e.style.display = on ? "block" : "none"; e.style.opacity = op; };
+
+  /* --- Sun motif + horizon --- */
+  const sun = $("sun"), hz = $("horizon");
+  let sx = W / 2, sy, sd, hzOp = 1;
+  if (f < 60) {                         // S1: rise from horizon to centre
+    const k = easeOut(prog(f, 0, 50));
+    sd = 360; sy = lerp(H - 140, H / 2, k);
+  } else if (f < 135) {                 // S2: halo behind wordmark, slow breathe; wipe-out at 127-134
+    sd = lerp(360, 520, easeOut(prog(f, 60, 80)));
+    sy = H / 2 - 40;
+    sd = lerp(sd, 2400, easeInOut(prog(f, 127, 135)));
+    hzOp = 1 - prog(f, 60, 70);
+  } else if (f < 210) {                 // S3: shrink from full-frame to corner badge
+    const k = easeOut(prog(f, 135, 145));
+    sd = lerp(2400, 64, k); sx = lerp(W / 2, 192 + 32, k); sy = lerp(H / 2, 110 + 32, k);
+    hzOp = 0;
+  } else if (f < 405) {                 // S4–S5: corner badge
+    sd = 64; sx = 192 + 32; sy = 110 + 32; hzOp = 0;
+  } else {                              // S6: return as hero behind wordmark
+    const k = easeOut(prog(f, 405, 420));
+    sd = lerp(64, 820, k); sx = lerp(224, W / 2, k); sy = lerp(142, 510, k); hzOp = 0;
+  }
+  sun.style.width = sun.style.height = sd + "px";
+  sun.style.transform = `translate(${sx - sd / 2}px, ${sy - sd / 2}px)`;
+  const g = $("ground"); g.style.top = (H - 139) + "px"; g.style.display = f < 60 ? "block" : "none";
+  hz.style.top = (H - 140) + "px"; hz.style.opacity = .12 * hzOp;
+  if (f >= 135 && f < 145) hz.style.opacity = 0;
+
+  /* --- S2 wordmark --- */
+  show("s2", f >= 60 && f < 135);
+  if (f >= 60 && f < 135) {
+    const k = easeOut(prog(f, 62, 75));            // lands at f75 (2.50 s) — audio hit
+    $("wordmark").style.transform = `translateY(${lerp(180, 0, k)}px)`;
+    const d = easeOut(prog(f, 80, 92));
+    $("descriptor").style.opacity = d; $("descriptor").style.transform = `translateY(${lerp(20, 0, d)}px)`;
+    const y = easeOut(prog(f, 88, 100));
+    $("founded").style.opacity = y; $("founded").style.transform = `translateY(${lerp(20, 0, y)}px)`;
+    // descriptor/founded sit below the sun disc on cream → ink colour
+    $("descriptor").style.color = "var(--ink)";
+  }
+
+  /* --- S3 categories: pop on f143,150,158,165 --- */
+  show("s3", f >= 135 && f < 210);
+  if (f >= 135 && f < 210) {
+    const tk = easeOut(prog(f, 137, 147));
+    $("s3title").style.opacity = tk; $("s3title").style.transform = `translateX(${lerp(-30, 0, tk)}px)`;
+    for (let i = 0; i < 4; i++) {
+      const a = Math.round(142.5 + i * 7.5);            // 8th notes @120 BPM: f143,150,158,165
+      const k = prog(f, a, a + 12);
+      const c = $("card" + i);
+      c.style.opacity = clamp(k * 2); c.style.transform = `scale(${lerp(.8, 1, backOut(k))})`;
+    }
+    // camera: slow push-in 1.00 -> 1.03 across shot
+    $("s3").style.transform = `scale(${lerp(1, 1.03, prog(f, 135, 209))})`;
+  }
+
+  /* --- S4 stats: count-up f214..270, staggered 6f --- */
+  show("s4", f >= 210 && f < 334, f >= 326 ? 1 - prog(f, 326, 334) : 1);
+  if (f >= 210 && f < 334) {
+    $("s4title").style.opacity = easeOut(prog(f, 210, 218));
+    $("s4").style.transform = `scale(${lerp(1, 1.03, prog(f, 210, 333))})`;   // camera: slow push-in
+    for (let i = 0; i < 3; i++) {
+      const s = $("stat" + i), num = s.querySelector(".num");
+      const a = 212 + i * 4, k = easeOut(prog(f, a, a + 50));
+      s.style.opacity = clamp(prog(f, a, a + 6)); s.style.transform = `translateY(${lerp(30, 0, easeOut(prog(f, a, a + 10)))}px)`;
+      s.querySelector(".bar i").style.width = (k * 100) + "%";
+      if (num.dataset.target !== undefined) {
+        num.textContent = Math.round(k * Number(num.dataset.target)).toLocaleString("vi-VN");
+      }
+    }
+  }
+
+  /* --- S5 slogan: dissolve in 326-334, underline sweep 345-370 --- */
+  show("s5", f >= 326 && f < 405, f < 334 ? prog(f, 326, 334) : 1);
+  if (f >= 326 && f < 405) {
+    const el = $("slogan"); const r = el.getBoundingClientRect();
+    const w = Math.min(r.width, el.scrollWidth);
+    const line = $("sloganLine"); const k = easeInOut(prog(f, 345, 370));
+    line.style.left = (W / 2 - w / 2) + "px"; line.style.width = w + "px";
+    line.style.transform = `scaleX(${k})`;
+    $("s5").style.transform = `scale(${lerp(1, 1.02, prog(f, 330, 404))})`;
+  }
+
+  /* --- S6 end card: settles by f420, static hold f420-449 --- */
+  show("s6", f >= 405);
+  if (f >= 405) {
+    const k = easeOut(prog(f, 408, 420));
+    $("endmark").style.opacity = k; $("endmark").style.transform = `scale(${lerp(.92, 1, k)})`;
+    $("website").style.opacity = easeOut(prog(f, 412, 420));
+  }
+  $("dissolve").style.opacity = 0;
+};
+
+/* Layout QA: every [data-text] must not overflow its box and must sit inside title-safe (10%). */
+window.__checkLayout = function (f) {
+  const SAFE = { x0: 192, y0: 108, x1: 1728, y1: 972 };
+  const out = [];
+  document.querySelectorAll("[data-text]").forEach(el => {
+    let n = el, vis = true;
+    while (n && n !== document.body) { const cs = getComputedStyle(n); if (cs.display === "none" || Number(cs.opacity) === 0) { vis = false; break; } n = n.parentElement; }
+    if (!vis || !el.textContent.trim()) return;
+    if (el.scrollWidth > el.clientWidth + 1) out.push({ frame: f, id: el.id || el.closest("[id]").id, issue: "overflow", scrollWidth: el.scrollWidth, clientWidth: el.clientWidth });
+    // measure the ink box of the text itself (range), not the container
+    const rg = document.createRange(); rg.selectNodeContents(el); const r = rg.getBoundingClientRect();
+    if (r.left < SAFE.x0 - 1 || r.right > SAFE.x1 + 1 || r.top < SAFE.y0 - 1 || r.bottom > SAFE.y1 + 1)
+      out.push({ frame: f, id: el.id || el.closest("[id]").id, issue: "outside-title-safe", rect: [r.left, r.top, r.right, r.bottom].map(Math.round) });
+  });
+  return out;
+};
+</script>
+</body>
+</html>

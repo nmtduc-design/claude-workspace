@@ -1,0 +1,17 @@
+{
+  "_readme": "Mọi chữ/số hiển thị trên video đều lấy từ tệp này. Điền value + source cho từng mục rồi đặt status = \"verified\". Render cuối (--strict-facts) sẽ dừng nếu còn mục nào không phải \"verified\". Đường dẫn tệp thật truyền qua biến môi trường FACTS_PATH.",
+  "facts": {
+    "F01_brand":        { "label": "Tên thương hiệu (wordmark)",              "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F02_founded":      { "label": "Năm thành lập",                            "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F03_descriptor":   { "label": "Câu định vị một dòng (≤ 48 ký tự)",        "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F04_category_1":   { "label": "Ngành hàng 1", "icon": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F05_category_2":   { "label": "Ngành hàng 2", "icon": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F06_category_3":   { "label": "Ngành hàng 3", "icon": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F07_category_4":   { "label": "Ngành hàng 4", "icon": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F08_stat_1":       { "label": "Chỉ số 1 (vd. số nhà máy)",      "unit": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F09_stat_2":       { "label": "Chỉ số 2 (vd. số điểm bán)",     "unit": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F10_stat_3":       { "label": "Chỉ số 3 (vd. số thị trường XK)", "unit": null, "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F11_slogan":       { "label": "Slogan / sứ mệnh chính thức",              "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" },
+    "F12_website":      { "label": "Website chính thức",                       "value": null, "source_title": null, "source_url": null, "retrieved": null, "status": "missing" }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sunhouse-15s",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "stills": "node scripts/render.mjs --frames 0,225,449 --scale 1 --out out/stills && bash scripts/contact_sheet.sh",
+    "preview": "bash scripts/preview.sh",
+    "final": "bash scripts/final.sh",
+    "qa:dom": "node scripts/qa.mjs dom",
+    "qa": "node scripts/qa.mjs dom && bash scripts/qa_media.sh out/sunhouse_15s_1080p30.mp4"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

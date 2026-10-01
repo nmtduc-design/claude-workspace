@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>SUNHOUSE 15s</title>
+<style>
+  @font-face { font-family: "Be Vietnam Pro"; font-weight: 400; src: url(../assets/fonts/be-vietnam-pro-vietnamese-400-normal.woff2) format("woff2"); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+  @font-face { font-family: "Be Vietnam Pro"; font-weight: 400; src: url(../assets/fonts/be-vietnam-pro-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Be Vietnam Pro"; font-weight: 600; src: url(../assets/fonts/be-vietnam-pro-vietnamese-600-normal.woff2) format("woff2"); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+  @font-face { font-family: "Be Vietnam Pro"; font-weight: 600; src: url(../assets/fonts/be-vietnam-pro-latin-600-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Be Vietnam Pro"; font-weight: 800; src: url(../assets/fonts/be-vietnam-pro-vietnamese-800-normal.woff2) format("woff2"); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+  @font-face { font-family: "Be Vietnam Pro"; font-weight: 800; src: url(../assets/fonts/be-vietnam-pro-latin-800-normal.woff2) format("woff2"); }
+
+  :root {
+    /* PROVISIONAL palette — replace with values from the SUNHOUSE "Bản sắc nhận diện" brand book */
+    --sun: #F37021;      /* accent orange */
+    --sun-deep: #C9481A; /* panel background, white text >= 4.5:1 */
+    --cream: #FFF6EC;    /* light background */
+    --ink: #1E1B18;      /* primary text */
+    --muted: #6B6159;    /* secondary text on cream */
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream); }
+  body { font-family: "Be Vietnam Pro", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  #stage { position: absolute; inset: 0; overflow: hidden; }
+  .scene { position: absolute; inset: 0; visibility: hidden; transform-origin: 50% 50%; }
+  .txt { position: absolute; white-space: nowrap; }
+  .src { font-size: 22px; font-weight: 400; letter-spacing: .02em; left: 140px; bottom: 90px; }
+  #wipe { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; background: var(--sun); transform: translateX(-100%); }
+
+  /* S1 — sunrise + wordmark */
+  #s1 { background: var(--cream); }
+  #s1 .sun { position: absolute; left: 960px; width: 560px; height: 560px; margin-left: -280px; border-radius: 50%;
+             background: radial-gradient(circle at 50% 40%, #FF9A4D 0%, var(--sun) 60%, #E85A17 100%); }
+  #s1 .horizon { position: absolute; left: 0; right: 0; top: 760px; bottom: 0; background: var(--cream); }
+  #s1 .line { position: absolute; top: 760px; left: 96px; right: 96px; height: 4px; background: var(--ink); transform-origin: 50% 50%; }
+  #s1 .mark { top: 790px; left: 0; width: 1920px; text-align: center; font-weight: 800; font-size: 150px; line-height: 200px; letter-spacing: .06em; color: var(--ink); }
+  #s1 .sub  { top: 128px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 40px; line-height: 52px; letter-spacing: .3em; color: var(--muted); }
+
+  /* S2 — timeline */
+  #s2 { background: var(--cream); }
+  #s2 .h { top: 150px; left: 160px; width: 1600px; font-weight: 800; font-size: 96px; line-height: 120px; }
+  #s2 .rail { position: absolute; top: 560px; left: 160px; width: 1600px; height: 6px; background: var(--ink); transform-origin: 0 50%; }
+  #s2 .node { position: absolute; top: 540px; width: 46px; height: 46px; border-radius: 50%; background: var(--sun); border: 6px solid var(--cream); box-shadow: 0 0 0 6px var(--ink); margin-left: -23px; }
+  #s2 .yr { top: 380px; width: 480px; margin-left: -240px; text-align: center; font-weight: 800; font-size: 112px; line-height: 140px; color: var(--sun); }
+  #s2 .cap { top: 640px; width: 480px; margin-left: -240px; text-align: center; font-weight: 600; font-size: 34px; line-height: 46px; white-space: normal; height: 92px; }
+
+  /* S3 — stats */
+  #s3 { background: var(--sun-deep); color: var(--white); }
+  #s3 .cell { position: absolute; width: 760px; height: 300px; }
+  #s3 .n { top: 0; left: 0; width: 760px; font-weight: 800; font-size: 168px; line-height: 210px; font-variant-numeric: tabular-nums; }
+  #s3 .l { top: 212px; left: 4px; width: 756px; font-weight: 600; font-size: 44px; line-height: 56px; }
+  #s3 .bar { position: absolute; top: 290px; left: 4px; width: 120px; height: 8px; background: var(--white); transform-origin: 0 50%; }
+  #s3 .src { color: rgba(255,255,255,.85); }
+
+  /* S4 — categories */
+  #s4 { background: var(--cream); }
+  #s4 .h { top: 120px; left: 160px; width: 1600px; font-weight: 800; font-size: 88px; line-height: 110px; }
+  #s4 .tile { position: absolute; width: 500px; height: 260px; background: var(--white); border-radius: 20px; box-shadow: 0 8px 0 rgba(30,27,24,.08); overflow: hidden; }
+  #s4 .tile .acc { position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: var(--sun); }
+  #s4 .tile .idx { top: 36px; left: 52px; font-weight: 800; font-size: 40px; line-height: 48px; color: var(--sun); }
+  #s4 .tile .nm { top: 112px; left: 52px; width: 420px; font-weight: 800; font-size: 42px; line-height: 52px; white-space: normal; height: 112px; }
+  #s4 .src { color: var(--muted); }
+
+  /* S5 — end card */
+  #s5 { background: var(--sun-deep); color: var(--white); }
+  #s5 .sun { position: absolute; left: 960px; top: 150px; width: 300px; height: 300px; margin-left: -150px; border-radius: 50%;
+             background: radial-gradient(circle at 50% 40%, #FFB27A 0%, var(--sun) 65%, #E85A17 100%); }
+  #s5 .mark { top: 470px; left: 0; width: 1920px; text-align: center; font-weight: 800; font-size: 150px; line-height: 200px; letter-spacing: .06em; }
+  #s5 .tag  { top: 690px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 52px; line-height: 66px; letter-spacing: .04em; }
+  #s5 .rule { position: absolute; top: 800px; left: 760px; width: 400px; height: 4px; background: rgba(255,255,255,.7); transform-origin: 50% 50%; }
+  #s5 .url  { top: 850px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 40px; line-height: 52px; }
+  #s5 .tel  { top: 910px; left: 0; width: 1920px; text-align: center; font-weight: 400; font-size: 34px; line-height: 46px; color: rgba(255,255,255,.9); }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <section class="scene" id="s1" data-start="0" data-end="2.5">
+    <div class="sun"></div>
+    <div class="horizon"></div>
+    <div class="line"></div>
+    <div class="txt sub" data-fact="group_name"></div>
+    <div class="txt mark" data-fact="brand_name"></div>
+  </section>
+
+  <section class="scene" id="s2" data-start="2.5" data-end="5.0">
+    <div class="txt h" data-fact="since_heading"></div>
+    <div class="rail"></div>
+    <div class="node" style="left:400px"></div>
+    <div class="node" style="left:960px"></div>
+    <div class="node" style="left:1520px"></div>
+    <div class="txt yr" style="left:400px"  data-fact="y2000"></div>
+    <div class="txt yr" style="left:960px"  data-fact="y2004"></div>
+    <div class="txt yr" style="left:1520px" data-fact="y2010"></div>
+    <div class="txt cap" style="left:400px"  data-fact="y2000_caption"></div>
+    <div class="txt cap" style="left:960px"  data-fact="y2004_caption"></div>
+    <div class="txt cap" style="left:1520px" data-fact="y2010_caption"></div>
+    <div class="txt src" data-fact="src_about"></div>
+  </section>
+
+  <section class="scene" id="s3" data-start="5.0" data-end="9.0">
+    <div class="cell" style="left:200px; top:150px"><div class="txt n" data-fact="stat_products_n" data-count></div><div class="txt l" data-fact="stat_products_l"></div><div class="bar"></div></div>
+    <div class="cell" style="left:1000px;top:150px"><div class="txt n" data-fact="stat_pos_n" data-count></div><div class="txt l" data-fact="stat_pos_l"></div><div class="bar"></div></div>
+    <div class="cell" style="left:200px; top:520px"><div class="txt n" data-fact="stat_plants_n" data-count></div><div class="txt l" data-fact="stat_plants_l"></div><div class="bar"></div></div>
+    <div class="cell" style="left:1000px;top:520px"><div class="txt n" data-fact="stat_members_n" data-count></div><div class="txt l" data-fact="stat_members_l"></div><div class="bar"></div></div>
+    <div class="txt src" data-fact="src_about"></div>
+  </section>
+
+  <section class="scene" id="s4" data-start="9.0" data-end="12.0">
+    <div class="txt h" data-fact="cat_heading"></div>
+    <div class="tile" style="left:160px; top:330px"><div class="acc"></div><div class="txt idx" data-fact="none">01</div><div class="txt nm" data-fact="cat_1"></div></div>
+    <div class="tile" style="left:710px; top:330px"><div class="acc"></div><div class="txt idx" data-fact="none">02</div><div class="txt nm" data-fact="cat_2"></div></div>
+    <div class="tile" style="left:1260px;top:330px"><div class="acc"></div><div class="txt idx" data-fact="none">03</div><div class="txt nm" data-fact="cat_3"></div></div>
+    <div class="tile" style="left:160px; top:640px"><div class="acc"></div><div class="txt idx" data-fact="none">04</div><div class="txt nm" data-fact="cat_4"></div></div>
+    <div class="tile" style="left:710px; top:640px"><div class="acc"></div><div class="txt idx" data-fact="none">05</div><div class="txt nm" data-fact="cat_5"></div></div>
+    <div class="tile" style="left:1260px;top:640px"><div class="acc"></div><div class="txt idx" data-fact="none">06</div><div class="txt nm" data-fact="cat_6"></div></div>
+    <div class="txt src" data-fact="src_home"></div>
+  </section>
+
+  <section class="scene" id="s5" data-start="12.0" data-end="15.0">
+    <div class="sun"></div>
+    <div class="txt mark" data-fact="brand_name"></div>
+    <div class="txt tag" data-fact="tagline"></div>
+    <div class="rule"></div>
+    <div class="txt url" data-fact="url"></div>
+    <div class="txt tel" data-fact="hotline"></div>
+  </section>
+
+  <div id="wipe"></div>
+</div>
+
+<script>
+// Deterministic timeline: every visual is a pure function of t (seconds). No CSS transitions, no rAF, no Date.
+const FPS = 30, DURATION = 15.0;
+const CUTS = [2.5, 5.0, 9.0, 12.0];     // scene boundaries, all on 120-BPM beats
+const WIPE = 0.4;                         // 12 frames, centred on each cut
+
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function fillFacts(facts) {
+  for (const el of $$('[data-fact]')) {
+    const id = el.dataset.fact;
+    if (id === 'none') continue;
+    if (!facts[id]) throw new Error('Unknown fact id: ' + id);
+    el.textContent = facts[id].display;
+  }
+}
+
+function fmtCount(f, x) {               // vi-VN grouping with '.', optional zero-pad
+  const v = Math.round(f.value * x);
+  const s = v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return f.pad ? s.padStart(f.pad, '0') : s;
+}
+
+function fadeUp(el, t, a, dur = .5, dy = 40) {
+  const p = easeOut(prog(t, a, a + dur));
+  el.style.opacity = p;
+  el.style.transform = `translateY(${(1 - p) * dy}px)`;
+}
+
+// Camera: one slow linear push-in per shot (1.00 -> 1.03); S5 locks for its final 1.5 s.
+function camera(scene, t, a, b, lockAt = b) {
+  const p = prog(Math.min(t, lockAt), a, lockAt);
+  scene.style.transform = `scale(${1 + 0.03 * p})`;
+}
+
+function render(t) {
+  const facts = window.__FACTS;
+  for (const s of $$('.scene')) {
+    const on = t >= +s.dataset.start && t < +s.dataset.end || (s.id === 's5' && t >= 15.0);
+    s.style.visibility = on ? 'visible' : 'hidden';
+  }
+
+  // S1
+  { const s = $('#s1'); camera(s, t, 0, 2.5);
+    const rise = easeOut(prog(t, 0, 1.6));
+    s.querySelector('.sun').style.top = (700 - 420 * rise) + 'px';     // frame 0: sun cap already visible above horizon
+    s.querySelector('.line').style.transform = `scaleX(${0.35 + 0.65 * easeOut(prog(t, 0, 1.0))})`;
+    fadeUp(s.querySelector('.mark'), t, 0.6, .6, 60);
+    fadeUp(s.querySelector('.sub'), t, 1.0, .5, 20); }
+
+  // S2
+  { const s = $('#s2'); camera(s, t, 2.5, 5.0);
+    fadeUp(s.querySelector('.h'), t, 2.55, .45);
+    s.querySelector('.rail').style.transform = `scaleX(${easeInOut(prog(t, 2.7, 3.7))})`;
+    const nodes = s.querySelectorAll('.node'), yrs = s.querySelectorAll('.yr'), caps = s.querySelectorAll('.cap');
+    [2.9, 3.25, 3.6].forEach((a, i) => {
+      const p = easeOut(prog(t, a, a + .3));
+      nodes[i].style.transform = `scale(${p})`;
+      fadeUp(yrs[i], t, a, .4, 30);
+      fadeUp(caps[i], t, a + .1, .4, 20);
+    });
+    fadeUp(s.querySelector('.src'), t, 3.0, .4, 0); }
+
+  // S3 — counters land by 7.0 s, then hold 2.0 s for reading
+  { const s = $('#s3'); camera(s, t, 5.0, 9.0);
+    s.querySelectorAll('.cell').forEach((c, i) => {
+      const a = 5.25 + i * 0.15;
+      fadeUp(c, t, a, .4, 40);
+      const n = c.querySelector('[data-count]'), f = facts[n.dataset.fact];
+      n.textContent = fmtCount(f, easeOut(prog(t, a, 6.55 + i * 0.15)));
+      c.querySelector('.bar').style.transform = `scaleX(${easeOut(prog(t, a + .2, a + .8))})`;
+    });
+    fadeUp(s.querySelector('.src'), t, 5.6, .4, 0); }
+
+  // S4 — tiles cascade, all settled by 10.6 s
+  { const s = $('#s4'); camera(s, t, 9.0, 12.0);
+    fadeUp(s.querySelector('.h'), t, 9.05, .45);
+    s.querySelectorAll('.tile').forEach((tile, i) => fadeUp(tile, t, 9.3 + i * 0.12, .5, 50));
+    fadeUp(s.querySelector('.src'), t, 9.6, .4, 0); }
+
+  // S5 — end card, everything settled by 13.3 s, camera locked from 13.5 s
+  { const s = $('#s5'); camera(s, t, 12.0, 15.0, 13.5);
+    const sp = easeOut(prog(t, 12.05, 12.8));
+    s.querySelector('.sun').style.transform = `translateY(${(1 - sp) * 120}px) scale(${0.6 + 0.4 * sp})`;
+    s.querySelector('.sun').style.opacity = sp;
+    fadeUp(s.querySelector('.mark'), t, 12.2, .5, 50);
+    fadeUp(s.querySelector('.tag'), t, 12.5, .5, 30);
+    s.querySelector('.rule').style.transform = `scaleX(${easeOut(prog(t, 12.7, 13.1))})`;
+    fadeUp(s.querySelector('.url'), t, 12.8, .5, 20);
+    fadeUp(s.querySelector('.tel'), t, 12.9, .4, 20); }
+
+  // Wipe: panel fully covers frame exactly at each cut
+  let x = -100;
+  for (const c of CUTS) if (t >= c - WIPE / 2 && t < c + WIPE / 2) x = -100 + 200 * easeInOut(prog(t, c - WIPE / 2, c + WIPE / 2));
+  $('#wipe').style.transform = `translateX(${x}%)`;
+}
+
+window.__init = () => { fillFacts(window.__FACTS); return document.fonts.ready; };
+window.__seek = (frame) => render(frame / FPS);
+window.__meta = { FPS, DURATION, FRAMES: Math.round(FPS * DURATION), CUTS };
+</script>
+</body>
+</html>

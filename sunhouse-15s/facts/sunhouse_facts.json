@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "purpose": "Single source of truth for every on-screen claim. Each text element in src/index.html carries data-fact=<id>; scripts/qa.mjs fails if text is not bound to an id here or differs from `display`.",
+    "retrieved": "2026-10-01",
+    "retrieval_method": "Exa web_fetch (sunhouse.com.vn is blocked by this container's egress proxy; content was read through the fetch service, not a direct browser).",
+    "sources": {
+      "home": "https://sunhouse.com.vn/",
+      "about": "https://sunhouse.com.vn/gioi-thieu"
+    },
+    "known_conflicts": [
+      "home says 'hơn 500 nhóm sản phẩm'; about says '1.000 loại sản phẩm'. Video uses the about-page figure. Client to confirm.",
+      "Chairman letter on /gioi-thieu says 'Sau 18 năm' (stale, dated text). Video does NOT use any 'X năm' claim."
+    ]
+  },
+  "facts": {
+    "brand_name":      { "display": "SUNHOUSE", "source": "about", "quote": "Công ty Cổ phần Tập đoàn SUNHOUSE" },
+    "group_name":      { "display": "TẬP ĐOÀN SUNHOUSE", "source": "about", "quote": "Công ty Cổ phần Tập đoàn SUNHOUSE" },
+    "tagline":         { "display": "THƯƠNG HIỆU QUỐC GIA – CHUẨN QUỐC TẾ", "source": "about", "quote": "THƯƠNG HIỆU QUỐC GIA - CHUẨN QUỐC TẾ" },
+
+    "since_heading":   { "display": "Từ năm 2000", "source": "about", "quote": "tiền thân là Công ty TNHH Phú Thắng được thành lập ngày 22/5/2000" },
+    "y2000":           { "display": "2000", "source": "about", "quote": "thành lập ngày 22/5/2000" },
+    "y2000_caption":   { "display": "Thành lập Công ty TNHH Phú Thắng", "source": "about", "quote": "tiền thân là Công ty TNHH Phú Thắng được thành lập ngày 22/5/2000" },
+    "y2004":           { "display": "2004", "source": "about", "quote": "Năm 2004, SUNHOUSE liên doanh với Công ty TNHH SUNHOUSE Hàn Quốc" },
+    "y2004_caption":   { "display": "Liên doanh với SUNHOUSE Hàn Quốc", "source": "about", "quote": "Năm 2004, SUNHOUSE liên doanh với Công ty TNHH SUNHOUSE Hàn Quốc, thành lập Công ty TNHH SUNHOUSE Việt Nam" },
+    "y2010":           { "display": "2010", "source": "about", "quote": "Năm 2010, SUNHOUSE chính thực được lấy tên là Công ty Cổ phần Tập đoàn SUNHOUSE" },
+    "y2010_caption":   { "display": "Trở thành Công ty CP Tập đoàn SUNHOUSE", "source": "about", "quote": "Năm 2010, SUNHOUSE chính thực được lấy tên là Công ty Cổ phần Tập đoàn SUNHOUSE" },
+
+    "stat_products_n": { "display": "1.000", "value": 1000, "pad": 0, "source": "about", "quote": "1.000 loại sản phẩm" },
+    "stat_products_l": { "display": "loại sản phẩm", "source": "about", "quote": "1.000 loại sản phẩm" },
+    "stat_pos_n":      { "display": "60.000", "value": 60000, "pad": 0, "source": "about", "quote": "60.000 điểm bán" },
+    "stat_pos_l":      { "display": "điểm bán", "source": "about", "quote": "60.000 điểm bán" },
+    "stat_plants_n":   { "display": "06", "value": 6, "pad": 2, "source": "about", "quote": "06 nhà máy" },
+    "stat_plants_l":   { "display": "nhà máy", "source": "about", "quote": "06 nhà máy" },
+    "stat_members_n":  { "display": "07", "value": 7, "pad": 2, "source": "about", "quote": "07 công ty thành viên" },
+    "stat_members_l":  { "display": "công ty thành viên", "source": "about", "quote": "07 công ty thành viên" },
+
+    "cat_heading":     { "display": "Danh mục sản phẩm", "source": "about", "quote": "Danh mục sản phẩm" },
+    "cat_1":           { "display": "Điện gia dụng", "source": "home", "quote": "## Điện gia dụng" },
+    "cat_2":           { "display": "Điện tử Điện lạnh", "source": "home", "quote": "## Điện tử Điện lạnh" },
+    "cat_3":           { "display": "Thiết bị nhà bếp", "source": "home", "quote": "## Thiết bị nhà bếp" },
+    "cat_4":           { "display": "Điện dân dụng", "source": "home", "quote": "## Điện dân dụng" },
+    "cat_5":           { "display": "Thiết bị điện công nghiệp", "source": "home", "quote": "## Thiết bị điện công nghiệp" },
+    "cat_6":           { "display": "Thiết bị âm thanh", "source": "home", "quote": "## Thiết bị âm thanh" },
+
+    "url":             { "display": "sunhouse.com.vn", "source": "home", "quote": "Copyright © 2017 SUNHOUSE.com.vn" },
+    "hotline":         { "display": "Tổng đài CSKH 1800 6680", "source": "home", "quote": "Tổng đài CSKH: 1800 6680" },
+    "src_about":       { "display": "Nguồn: sunhouse.com.vn/gioi-thieu", "source": "about", "quote": "(attribution line)" },
+    "src_home":        { "display": "Nguồn: sunhouse.com.vn", "source": "home", "quote": "(attribution line)" }
+  }
+}

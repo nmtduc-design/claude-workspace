@@ -5,7 +5,9 @@ cd "$(dirname "$0")/.."
 rm -rf out/preview_frames
 node scripts/render.mjs --scale 0.5 --out out/preview_frames
 bash scripts/music.sh
-ffmpeg -hide_banner -loglevel error -y -framerate 30 -i out/preview_frames/f%05d.png -i out/audio/music.wav \
+python3 scripts/scratch_vo.py vo/vo_script.json out/audio/scratch >/dev/null
+python3 scripts/mix.py
+ffmpeg -hide_banner -loglevel error -y -framerate 30 -i out/preview_frames/f%05d.png -i out/audio/mix.wav \
   -c:v libx264 -preset ultrafast -crf 30 -pix_fmt yuv420p -r 30 -c:a aac -b:a 128k -shortest \
   out/sunhouse_15s_preview_540p30.mp4
 echo "-> out/sunhouse_15s_preview_540p30.mp4"

@@ -18,7 +18,8 @@ for (let f = 0; f < meta.FRAMES; f++) {
     window.__seek(n);
     const vis = el => { for (let e = el; e && e !== document.body; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.visibility === 'hidden' || +cs.opacity < 0.01) return 0; } let o = 1; for (let e = el; e && e !== document.body; e = e.parentElement) o *= +getComputedStyle(e).opacity; return o; };
     const scenes = [...document.querySelectorAll('.scene')].filter(s => getComputedStyle(s).visibility === 'visible').map(s => s.id);
-    const wipe = new DOMMatrix(getComputedStyle(document.getElementById('wipe')).transform).m41;
+    const wb = document.getElementById('wipe').getBoundingClientRect();
+    const wipe = getComputedStyle(document.getElementById('wipe')).visibility === 'visible' ? (wb.left + wb.right) / 2 : null;
     const texts = [...document.querySelectorAll('.txt')].map(el => {
       const o = vis(el); if (!o) return null;
       const rg = document.createRange(); rg.selectNodeContents(el); const b = rg.getBoundingClientRect();
@@ -29,7 +30,8 @@ for (let f = 0; f < meta.FRAMES; f++) {
     return { scenes, wipe, texts };
   }, f);
 
-  if (r.scenes.length !== 1) fail(f, `expected exactly 1 visible scene, got [${r.scenes}]`);
+  const inWipe = meta.CUTS.some(c => Math.abs(f / meta.FPS - c) <= 0.2 + 1e-6);
+  if (!(r.scenes.length === 1 || (inWipe && r.scenes.length === 2))) fail(f, `expected 1 visible scene (2 inside a wipe), got [${r.scenes}]`);
   for (const t of r.texts) {
     if (!t.fact) fail(f, `unbound text "${t.text}"`);
     else if (t.fact === 'none') { if (!/^\d{2}$/.test(t.text)) fail(f, `decorative text must be an index numeral, got "${t.text}"`); }
@@ -40,7 +42,7 @@ for (let f = 0; f < meta.FRAMES; f++) {
     if (t.o > 0.5 && (t.x0 < SAFE.x0 || t.y0 < SAFE.y0 || t.x1 > SAFE.x1 || t.y1 > SAFE.y1))
       fail(f, `outside title-safe [${t.fact}] "${t.text}" @ ${t.x0.toFixed(0)},${t.y0.toFixed(0)}-${t.x1.toFixed(0)},${t.y1.toFixed(0)}`);
   }
-  for (const c of meta.CUTS) if (f === Math.round(c * meta.FPS) && Math.abs(r.wipe) > 1) fail(f, `wipe not covering frame at cut ${c}s (x=${r.wipe})`);
+  for (const c of meta.CUTS) if (f === Math.round(c * meta.FPS) && (r.wipe === null || Math.abs(r.wipe - 960) > 2)) fail(f, `wipe bar not at centre on cut ${c}s (x=${r.wipe})`);
 }
 // Counters must have landed on the exact fact value by 7.0 s (frame 210) and hold to the cut.
 for (const f of [210, 269]) {

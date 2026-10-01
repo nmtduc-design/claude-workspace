@@ -12,42 +12,39 @@
   @font-face { font-family: "Be Vietnam Pro"; font-weight: 800; src: url(../assets/fonts/be-vietnam-pro-latin-800-normal.woff2) format("woff2"); }
 
   :root {
-    /* PROVISIONAL palette — replace with values from the SUNHOUSE "Bản sắc nhận diện" brand book */
-    --sun: #F37021;      /* accent orange */
-    --sun-deep: #C9481A; /* panel background, white text >= 4.5:1 */
-    --cream: #FFF6EC;    /* light background */
-    --ink: #1E1B18;      /* primary text */
-    --muted: #6B6159;    /* secondary text on cream */
+    /* Palette sampled from the client-supplied logo (assets/brand/sunhouse_logo.png) */
+    --red: #DB2128;      /* brand red: accents, years, wipe. On --paper 4.6:1 */
+    --teal: #0D7182;     /* brand teal: panel background. White text 5.7:1 */
+    --paper: #F5F8F9;    /* light background */
+    --ink: #13252B;      /* primary text, 14.8:1 on paper */
+    --muted: #5A6B70;    /* secondary text, 5.2:1 on paper */
     --white: #FFFFFF;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream); }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
   body { font-family: "Be Vietnam Pro", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
   #stage { position: absolute; inset: 0; overflow: hidden; }
   .scene { position: absolute; inset: 0; visibility: hidden; transform-origin: 50% 50%; }
   .txt { position: absolute; white-space: nowrap; }
   .src { font-size: 22px; font-weight: 400; letter-spacing: .02em; left: 140px; bottom: 90px; }
-  #wipe { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; background: var(--sun); transform: translateX(-100%); }
+  #wipe { position: absolute; top: 0; left: -12px; width: 24px; height: 1080px; background: var(--red); visibility: hidden; }
 
-  /* S1 — sunrise + wordmark */
-  #s1 { background: var(--cream); }
-  #s1 .sun { position: absolute; left: 960px; width: 560px; height: 560px; margin-left: -280px; border-radius: 50%;
-             background: radial-gradient(circle at 50% 40%, #FF9A4D 0%, var(--sun) 60%, #E85A17 100%); }
-  #s1 .horizon { position: absolute; left: 0; right: 0; top: 760px; bottom: 0; background: var(--cream); }
-  #s1 .line { position: absolute; top: 760px; left: 96px; right: 96px; height: 4px; background: var(--ink); transform-origin: 50% 50%; }
-  #s1 .mark { top: 790px; left: 0; width: 1920px; text-align: center; font-weight: 800; font-size: 150px; line-height: 200px; letter-spacing: .06em; color: var(--ink); }
-  #s1 .sub  { top: 128px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 40px; line-height: 52px; letter-spacing: .3em; color: var(--muted); }
+  /* S1 — logo rises from the horizon */
+  #s1 { background: var(--paper); }
+  #s1 .logo { position: absolute; left: 660px; top: 290px; width: 600px; height: 318px; transform-origin: 50% 100%; }
+  #s1 .line { position: absolute; top: 606px; left: 96px; right: 96px; height: 4px; background: var(--ink); transform-origin: 50% 50%; }
+  #s1 .sub  { top: 680px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 44px; line-height: 60px; letter-spacing: .3em; color: var(--teal); }
 
   /* S2 — timeline */
-  #s2 { background: var(--cream); }
+  #s2 { background: var(--paper); }
   #s2 .h { top: 150px; left: 160px; width: 1600px; font-weight: 800; font-size: 96px; line-height: 120px; }
   #s2 .rail { position: absolute; top: 560px; left: 160px; width: 1600px; height: 6px; background: var(--ink); transform-origin: 0 50%; }
-  #s2 .node { position: absolute; top: 540px; width: 46px; height: 46px; border-radius: 50%; background: var(--sun); border: 6px solid var(--cream); box-shadow: 0 0 0 6px var(--ink); margin-left: -23px; }
-  #s2 .yr { top: 380px; width: 480px; margin-left: -240px; text-align: center; font-weight: 800; font-size: 112px; line-height: 140px; color: var(--sun); }
-  #s2 .cap { top: 640px; width: 480px; margin-left: -240px; text-align: center; font-weight: 600; font-size: 34px; line-height: 46px; white-space: normal; height: 92px; }
+  #s2 .node { position: absolute; top: 540px; width: 46px; height: 46px; border-radius: 50%; background: var(--red); border: 6px solid var(--paper); box-shadow: 0 0 0 6px var(--ink); margin-left: -23px; }
+  #s2 .yr { top: 380px; width: 480px; margin-left: -240px; text-align: center; font-weight: 800; font-size: 112px; line-height: 140px; color: var(--red); }
+  #s2 .cap { top: 640px; width: 480px; margin-left: -240px; text-align: center; font-weight: 600; font-size: 34px; line-height: 46px; white-space: normal; text-wrap: balance; height: 92px; }
 
   /* S3 — stats */
-  #s3 { background: var(--sun-deep); color: var(--white); }
+  #s3 { background: var(--teal); color: var(--white); }
   #s3 .cell { position: absolute; width: 760px; height: 300px; }
   #s3 .n { top: 0; left: 0; width: 760px; font-weight: 800; font-size: 168px; line-height: 210px; font-variant-numeric: tabular-nums; }
   #s3 .l { top: 212px; left: 4px; width: 756px; font-weight: 600; font-size: 44px; line-height: 56px; }
@@ -55,34 +52,30 @@
   #s3 .src { color: rgba(255,255,255,.85); }
 
   /* S4 — categories */
-  #s4 { background: var(--cream); }
+  #s4 { background: var(--paper); }
   #s4 .h { top: 120px; left: 160px; width: 1600px; font-weight: 800; font-size: 88px; line-height: 110px; }
-  #s4 .tile { position: absolute; width: 500px; height: 260px; background: var(--white); border-radius: 20px; box-shadow: 0 8px 0 rgba(30,27,24,.08); overflow: hidden; }
-  #s4 .tile .acc { position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: var(--sun); }
-  #s4 .tile .idx { top: 36px; left: 52px; font-weight: 800; font-size: 40px; line-height: 48px; color: var(--sun); }
+  #s4 .tile { position: absolute; width: 500px; height: 260px; background: var(--white); border-radius: 20px; box-shadow: 0 8px 0 rgba(19,37,43,.08); overflow: hidden; }
+  #s4 .tile .acc { position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: var(--red); }
+  #s4 .tile .idx { top: 36px; left: 52px; font-weight: 800; font-size: 40px; line-height: 48px; color: var(--red); }
   #s4 .tile .nm { top: 112px; left: 52px; width: 420px; font-weight: 800; font-size: 42px; line-height: 52px; white-space: normal; height: 112px; }
   #s4 .src { color: var(--muted); }
 
-  /* S5 — end card */
-  #s5 { background: var(--sun-deep); color: var(--white); }
-  #s5 .sun { position: absolute; left: 960px; top: 150px; width: 300px; height: 300px; margin-left: -150px; border-radius: 50%;
-             background: radial-gradient(circle at 50% 40%, #FFB27A 0%, var(--sun) 65%, #E85A17 100%); }
-  #s5 .mark { top: 470px; left: 0; width: 1920px; text-align: center; font-weight: 800; font-size: 150px; line-height: 200px; letter-spacing: .06em; }
-  #s5 .tag  { top: 690px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 52px; line-height: 66px; letter-spacing: .04em; }
-  #s5 .rule { position: absolute; top: 800px; left: 760px; width: 400px; height: 4px; background: rgba(255,255,255,.7); transform-origin: 50% 50%; }
-  #s5 .url  { top: 850px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 40px; line-height: 52px; }
-  #s5 .tel  { top: 910px; left: 0; width: 1920px; text-align: center; font-weight: 400; font-size: 34px; line-height: 46px; color: rgba(255,255,255,.9); }
+  /* S5 — end card on paper so the logo's teal shield and red pill stay distinct */
+  #s5 { background: var(--paper); }
+  #s5 .logo { position: absolute; left: 660px; top: 170px; width: 600px; height: 318px; }
+  #s5 .tag  { top: 560px; left: 0; width: 1920px; text-align: center; font-weight: 800; font-size: 56px; line-height: 72px; letter-spacing: .03em; color: var(--teal); }
+  #s5 .rule { position: absolute; top: 680px; left: 810px; width: 300px; height: 6px; background: var(--red); transform-origin: 50% 50%; }
+  #s5 .url  { top: 730px; left: 0; width: 1920px; text-align: center; font-weight: 600; font-size: 42px; line-height: 56px; }
+  #s5 .tel  { top: 796px; left: 0; width: 1920px; text-align: center; font-weight: 400; font-size: 36px; line-height: 48px; color: var(--muted); }
 </style>
 </head>
 <body>
 <div id="stage">
 
   <section class="scene" id="s1" data-start="0" data-end="2.5">
-    <div class="sun"></div>
-    <div class="horizon"></div>
+    <img class="logo" src="../assets/brand/sunhouse_logo.png" alt="SUNHOUSE" data-asset="logo">
     <div class="line"></div>
     <div class="txt sub" data-fact="group_name"></div>
-    <div class="txt mark" data-fact="brand_name"></div>
   </section>
 
   <section class="scene" id="s2" data-start="2.5" data-end="5.0">
@@ -120,8 +113,7 @@
   </section>
 
   <section class="scene" id="s5" data-start="12.0" data-end="15.0">
-    <div class="sun"></div>
-    <div class="txt mark" data-fact="brand_name"></div>
+    <img class="logo" src="../assets/brand/sunhouse_logo.png" alt="SUNHOUSE" data-asset="logo">
     <div class="txt tag" data-fact="tagline"></div>
     <div class="rule"></div>
     <div class="txt url" data-fact="url"></div>
@@ -173,18 +165,25 @@ function camera(scene, t, a, b, lockAt = b) {
 
 function render(t) {
   const facts = window.__FACTS;
+  // Line wipe: outgoing scene stays up until the bar has crossed; incoming scene is revealed left->right behind the bar.
+  // No frame is ever covered by a flat panel.
   for (const s of $$('.scene')) {
-    const on = t >= +s.dataset.start && t < +s.dataset.end || (s.id === 's5' && t >= 15.0);
+    const a = +s.dataset.start, b = +s.dataset.end;
+    const on = t >= (a > 0 ? a - WIPE / 2 : 0) && (t < (b < DURATION ? b + WIPE / 2 : Infinity));
     s.style.visibility = on ? 'visible' : 'hidden';
+    const p = a > 0 ? easeInOut(prog(t, a - WIPE / 2, a + WIPE / 2)) : 1;
+    s.style.clipPath = p < 1 ? `inset(0 ${(1 - p) * 100}% 0 0)` : 'none';
   }
 
-  // S1
+  // S1 — logo rises from behind the horizon (frame 0 already shows the line + top sliver), group name follows
   { const s = $('#s1'); camera(s, t, 0, 2.5);
-    const rise = easeOut(prog(t, 0, 1.6));
-    s.querySelector('.sun').style.top = (700 - 420 * rise) + 'px';     // frame 0: sun cap already visible above horizon
+    const rise = easeOut(prog(t, 0, 1.1));
+    const logo = s.querySelector('.logo');
+    const dy = (1 - (0.12 + 0.88 * rise)) * 318;                 // slides up from behind the horizon (y=606)
+    logo.style.transform = `translateY(${dy}px)`;
+    logo.style.clipPath = `inset(0 0 ${Math.max(0, 290 + dy + 318 - 606)}px 0)`;  // hide whatever is still below the line
     s.querySelector('.line').style.transform = `scaleX(${0.35 + 0.65 * easeOut(prog(t, 0, 1.0))})`;
-    fadeUp(s.querySelector('.mark'), t, 0.6, .6, 60);
-    fadeUp(s.querySelector('.sub'), t, 1.0, .5, 20); }
+    fadeUp(s.querySelector('.sub'), t, 0.9, .5, 20); }
 
   // S2
   { const s = $('#s2'); camera(s, t, 2.5, 5.0);
@@ -202,13 +201,13 @@ function render(t) {
   // S3 — counters land by 7.0 s, then hold 2.0 s for reading
   { const s = $('#s3'); camera(s, t, 5.0, 9.0);
     s.querySelectorAll('.cell').forEach((c, i) => {
-      const a = 5.25 + i * 0.15;
+      const a = 5.0 + i * 0.12;               // first cell is already appearing as the wipe bar passes
       fadeUp(c, t, a, .4, 40);
       const n = c.querySelector('[data-count]'), f = facts[n.dataset.fact];
       n.textContent = fmtCount(f, easeOut(prog(t, a, 6.55 + i * 0.15)));
       c.querySelector('.bar').style.transform = `scaleX(${easeOut(prog(t, a + .2, a + .8))})`;
     });
-    fadeUp(s.querySelector('.src'), t, 5.6, .4, 0); }
+    fadeUp(s.querySelector('.src'), t, 5.3, .4, 0); }
 
   // S4 — tiles cascade, all settled by 10.6 s
   { const s = $('#s4'); camera(s, t, 9.0, 12.0);
@@ -218,22 +217,23 @@ function render(t) {
 
   // S5 — end card, everything settled by 13.3 s, camera locked from 13.5 s
   { const s = $('#s5'); camera(s, t, 12.0, 15.0, 13.5);
-    const sp = easeOut(prog(t, 12.05, 12.8));
-    s.querySelector('.sun').style.transform = `translateY(${(1 - sp) * 120}px) scale(${0.6 + 0.4 * sp})`;
-    s.querySelector('.sun').style.opacity = sp;
-    fadeUp(s.querySelector('.mark'), t, 12.2, .5, 50);
-    fadeUp(s.querySelector('.tag'), t, 12.5, .5, 30);
-    s.querySelector('.rule').style.transform = `scaleX(${easeOut(prog(t, 12.7, 13.1))})`;
-    fadeUp(s.querySelector('.url'), t, 12.8, .5, 20);
-    fadeUp(s.querySelector('.tel'), t, 12.9, .4, 20); }
+    const lp = easeOut(prog(t, 12.05, 12.7));
+    const logo = s.querySelector('.logo');
+    logo.style.opacity = lp; logo.style.transform = `scale(${0.9 + 0.1 * lp})`;
+    fadeUp(s.querySelector('.tag'), t, 12.4, .5, 30);
+    s.querySelector('.rule').style.transform = `scaleX(${easeOut(prog(t, 12.6, 13.0))})`;
+    fadeUp(s.querySelector('.url'), t, 12.7, .5, 20);
+    fadeUp(s.querySelector('.tel'), t, 12.8, .5, 20); }
 
-  // Wipe: panel fully covers frame exactly at each cut
-  let x = -100;
-  for (const c of CUTS) if (t >= c - WIPE / 2 && t < c + WIPE / 2) x = -100 + 200 * easeInOut(prog(t, c - WIPE / 2, c + WIPE / 2));
-  $('#wipe').style.transform = `translateX(${x}%)`;
+  // Wipe bar rides the reveal edge; it sits exactly at screen centre on each cut frame
+  const w = $('#wipe'); w.style.visibility = 'hidden';
+  for (const c of CUTS) if (t > c - WIPE / 2 && t < c + WIPE / 2) {
+    w.style.visibility = 'visible';
+    w.style.transform = `translateX(${1920 * easeInOut(prog(t, c - WIPE / 2, c + WIPE / 2))}px)`;
+  }
 }
 
-window.__init = () => { fillFacts(window.__FACTS); return document.fonts.ready; };
+window.__init = async () => { fillFacts(window.__FACTS); await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode())); };
 window.__seek = (frame) => render(frame / FPS);
 window.__meta = { FPS, DURATION, FRAMES: Math.round(FPS * DURATION), CUTS };
 </script>

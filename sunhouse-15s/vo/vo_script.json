@@ -1,0 +1,57 @@
+{
+  "_meta": "VO cue sheet. Each cue is placed so speech STARTS at `start` (s) and must END before `end`. `facts` = ids in facts/sunhouse_facts.json the line is grounded in. Numbers are spelled out for the voice; on-screen text keeps the fact `display`.",
+  "cues": [
+    {
+      "id": "vo1",
+      "start": 0.4,
+      "end": 2.4,
+      "text": "Tập đoàn SUNHOUSE.",
+      "facts": [
+        "group_name"
+      ]
+    },
+    {
+      "id": "vo2",
+      "start": 2.7,
+      "end": 4.9,
+      "text": "Hành trình từ năm hai nghìn.",
+      "facts": [
+        "since_heading",
+        "y2000"
+      ]
+    },
+    {
+      "id": "vo3",
+      "start": 5.3,
+      "end": 8.9,
+      "text": "Một nghìn loại sản phẩm, sáu mươi nghìn điểm bán, sáu nhà máy.",
+      "facts": [
+        "stat_products_n",
+        "stat_products_l",
+        "stat_pos_n",
+        "stat_pos_l",
+        "stat_plants_n",
+        "stat_plants_l"
+      ]
+    },
+    {
+      "id": "vo4",
+      "start": 9.3,
+      "end": 11.9,
+      "text": "Điện gia dụng, thiết bị nhà bếp.",
+      "facts": [
+        "cat_1",
+        "cat_3"
+      ]
+    },
+    {
+      "id": "vo5",
+      "start": 12.3,
+      "end": 14.6,
+      "text": "Thương hiệu quốc gia, chuẩn quốc tế.",
+      "facts": [
+        "tagline"
+      ]
+    }
+  ]
+}

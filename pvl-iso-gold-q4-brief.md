@@ -8,6 +8,7 @@
 | 2 | Market scan (participation, category size) | Opportunity |
 | 3 | Competitor benchmark (ON Isolate, Dymatize ISO100, regular whey as price anchor) | Gaps |
 | 4 | Pain mining (clinical + industry data; validate with comment mining) | Pain list |
+| 4b | Angle evidence: Kalodata top-5 TikTok Shop whey videos | Angle patterns |
 | 5 | Map USP ↔ Pain ↔ Message ↔ Scene | Logic chain |
 | 6 | Script + A/B test plan | Brief |
 
@@ -38,7 +39,24 @@
 |---|---|---|---|---|
 | 1 (hero) | **"27g that sits right."** | 1 | Isolate + enzymes + DE111 | Say "formulated for easier digestion"; never "cures bloating" |
 | 2 | **"27g. Zero filler. Nothing to hide."** | 2 | Clean label, tested mark | Confirm certifier |
-| 3 | **"Premium, made easy."** | 3 | Atome, 10% off, free shipping | Q4 frame: *End 2026 stronger* |
+| 3 | **"Premium, made easy."** | 3 | Per-serving price, Atome, 10% off, free shipping, shaker bundle | Q4 frame: *End 2026 stronger* |
+
+### 3a. Content-Angle Evidence (Kalodata, TikTok Shop, top 5 whey videos by revenue, 23/09–22/10/2026) [11]
+| # | Creator followers | Units sold | Views | Units/1k views | Angle in title |
+|---|---|---|---|---|---|
+| 1 | 13.5k | 10 | 14.97k | 0.67 | Isolate product demo (paid ad) |
+| 2 | **168** | 11 | 6.86k | 1.60 | Value per serving ("2kg, 66 servings") |
+| 3 | 64.9k | 9 | **26.26k** | 0.34 | Free-shaker gift + "no impurities" |
+| 4 | 2.4k | 7 | 9.68k | 0.72 | Premium isolate pitch (paid ad) |
+| 5 | 1.7k | 4 | 2.25k | **1.78** | Brand review, 14s |
+
+**Takeaways**
+1. **Views ≠ sales.** The most-viewed video converts least; a 14s clip converts best. → Optimise offer and clarity, not reach.
+2. **Small creators sell.** Three of five have under 3k followers. → Hook and offer beat audience size.
+3. **Winning titles lead with** "isolate", servings value, a gift, and "no impurities". → Maps to USP 3 and Message 3.
+4. **No gut-health angle appears in the top 5.** Possible white space for PVL, but untested. → A/B it (below).
+
+*Limits:* Vietnam region, n=5, 4–11 orders each. Directional only; not Singapore data.
 
 ## 4. TikTok Script: "The Shake That Doesn't Fight Back"
 **Spec:** 9:16, 35s, creator UGC, voiceover + captions, #ad disclosure.
@@ -50,11 +68,13 @@
 | 8–16s | Scoop PVL, label close-ups | "PVL Iso Gold: 27g grass-fed isolate, plus enzymes and 1 billion probiotics." / **27g · Enzymes · 1B DE111** | Message 1 |
 | 16–22s | Shake pour, taste reaction, flavour lineup | "Zero filler. No artificial colours. 13 flavours, and Triple Milk Choco is my pick." | Message 2 |
 | 22–28s | Creator lifting, relaxed | "Now post-workout is the best part of my day." / *Individual results vary* | Social proof |
-| 28–35s | Product page, price, Atome | "S$91.60, or 3 payments of S$30.53 with Atome. 10% off your first order. Tap the basket." / **Free shipping from S$99: add a shaker** | CTA (Message 3) |
+| 28–35s | Product page, price, Atome | "S$91.60, about S$3.2 a serving*, or 3 payments of S$30.53 with Atome. 10% off your first order. Tap the basket." / **Free shipping from S$99: add a shaker** | CTA (Message 3) |
 
 **Caption:** Shake that sits right 💛 27g isolate + enzymes + probiotic. #sgfitness #wheyprotein #gymsg #ultimatesup #1212
 
-**A/B hooks:** (A) pain "stomach hates me", (B) stat "27g vs 25g", (C) price "3×S$30.53".
+*\*Estimate; confirm servings on label.*
+
+**A/B hooks:** (A) pain "stomach hates me" (untested angle), (B) stat "27g vs 25g", (C) value "per serving + shaker bundle" (angle proven in 3a).
 **KPIs:** 3s view rate, 6s hold, CTR, add-to-cart, CVR, ROAS, AOV (shaker bundle to cross S$99). Set targets from account baseline.
 
 ---
@@ -69,3 +89,4 @@
 8. [Krisshop, ON Gold Standard Whey 2lb](https://www.krisshop.com/en/product/619e577020cda69b/optimum-nutrition-gold-standard-100-whey-protein-2lb-banana-cream.html)
 9. [Hypolactasia among three ethnic groups in Malaysia](https://ijmr.org.in/hypolactasia-lactose-intolerance-among-three-ethnic-groups-in-malaysia/)
 10. [LGC Informed Protein survey](https://protein.wetestyoutrust.com/news/lgc-publishes-protein-supplements-survey)
+11. Kalodata, TikTok Shop video ranking (VN region, 23/09–22/10/2026), screenshot by author; revenue currency unconfirmed, so only relative metrics used
